@@ -7,13 +7,8 @@ export default async function Home() {
   const usersRes = await fetch(`${backendUrl}/api/users`, { cache: 'no-store' });
   const users = await usersRes.json();
   return (
+ <h1 className="text-3xl font-bold mb-8">Live Cloud Data Test</h1>
  <main className="flex min-h-screen items-center justify-center bg-black">
-      <div className="rounded-2xl bg-white px-10 py-6 shadow-xl">
-        <h1 className="text-3xl font-bold text-center text-black">
-          {data.status}
-        </h1>
-      </div>
-      <h1 className="text-3xl font-bold mb-8">Live Cloud Data Test</h1>
       
       <div className="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
         <table className="min-w-full bg-white">
