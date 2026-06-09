@@ -13,9 +13,6 @@ export default async function Home() {
           {data.status}
         </h1>
       </div>
-    </main>
-
-<main className="p-8 font-sans max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-8">Live Cloud Data Test</h1>
       
       <div className="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
