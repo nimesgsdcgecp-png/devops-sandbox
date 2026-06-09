@@ -17,6 +17,10 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
+      - name: Set up Image Tag
+        id: vars
+        run: echo "SHA_SHORT=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
       # Step 1: Log in to Docker Hub using the secrets vault
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -34,7 +38,9 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ env.DOCKERHUB_USER }}/sandbox-backend:latest
+          tags: |
+            ${{ env.DOCKERHUB_USER }}/sandbox-backend:latest
+            ${{ env.DOCKERHUB_USER }}/sandbox-backend:${{ env.SHA_SHORT }}
 
       # Step 4: Build and Push Frontend Container
       - name: Build and Push Frontend
@@ -42,4 +48,6 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: ${{ env.DOCKERHUB_USER }}/sandbox-frontend:latest
+          tags: |
+            ${{ env.DOCKERHUB_USER }}/sandbox-frontend:latest
+            ${{ env.DOCKERHUB_USER }}/sandbox-frontend:${{ env.SHA_SHORT }}
