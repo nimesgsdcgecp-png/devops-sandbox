@@ -6,14 +6,15 @@ export default async function Home() {
 // Fetch the users array from Spring Boot
   const usersRes = await fetch(`${backendUrl}/api/users`, { cache: 'no-store' });
   const users = await usersRes.json();
-  return (
- <h1 className="text-3xl font-bold mb-8">Live Cloud Data Test</h1>
- <main className="flex min-h-screen items-center justify-center bg-black">
-      
+return (
+  <>
+    <h1 className="text-3xl font-bold mb-8">
+      Live Cloud Data Test
+    </h1>
+
+    <main className="flex min-h-screen items-center justify-center bg-black">
       <div className="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
         <table className="min-w-full bg-white">
-          
-          {/* Table Header */}
           <thead className="bg-gray-800 text-white">
             <tr>
               <th className="px-6 py-3 text-left text-sm font-semibold">ID</th>
@@ -22,21 +23,26 @@ export default async function Home() {
               <th className="px-6 py-3 text-left text-sm font-semibold">Role</th>
             </tr>
           </thead>
-          
-          {/* Table Body (Dynamic Data) */}
+
           <tbody className="divide-y divide-gray-200">
             {users.map((user: any) => (
               <tr key={user.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 text-sm text-gray-900">{user.id}</td>
-                <td className="px-6 py-4 text-sm text-gray-900 font-medium">{user.name}</td>
-                <td className="px-6 py-4 text-sm text-gray-500">{user.email}</td>
-                <td className="px-6 py-4 text-sm text-blue-600 font-medium">{user.role}</td>
+                <td className="px-6 py-4 text-sm text-gray-900 font-medium">
+                  {user.name}
+                </td>
+                <td className="px-6 py-4 text-sm text-gray-500">
+                  {user.email}
+                </td>
+                <td className="px-6 py-4 text-sm text-blue-600 font-medium">
+                  {user.role}
+                </td>
               </tr>
             ))}
           </tbody>
-          
         </table>
       </div>
     </main>
-  );
+  </>
+);
 }

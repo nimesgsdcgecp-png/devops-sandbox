@@ -8,3 +8,13 @@
     # OS & Log ignores
     *.log
     .DS_Store
+
+# Ignore local secrets
+*.tfvars
+*.tfvars.json
+
+# Ignore local Terraform state files
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
